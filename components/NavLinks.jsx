@@ -4,6 +4,8 @@ const links = [
   { href: '/tours', label: 'Turlar' },
   { href: '/tours/new-tour', label: 'Beni Şaşırt' },
   { href: '/profile', label: 'Profilim' },
+  { href: '/translation', label: 'Çeviri' },
+  { href: '/translation/new-translation', label: 'Yeni Çeviri' },
 ];
 
 const NavLinks = () => {

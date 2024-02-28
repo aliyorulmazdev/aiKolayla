@@ -25,3 +25,15 @@ model Token {
   clerkId String @id
   tokens Int @default (1000)
 }
+
+model Translation {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  language String
+  desiredlanguage String
+  text String?
+  image String? @db.Text
+  translatedtext Json
+  @@unique([language, desiredlanguage])
+}
