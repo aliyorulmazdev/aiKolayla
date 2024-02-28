@@ -18,7 +18,7 @@ const SingleTourPage = async ({ params }) => {
   return (
     <div>
       <Link href="/tours" className="btn btn-secondary mb-12">
-        back to tours
+        turlara geri dön
       </Link>
 
       {tourImage ? (

@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "AI Kolayla",
   description:
-    "GPTGenius: Your AI language companion. Powered by OpenAI, it enhances your conversations, content creation, and more!",
+    "Yapay Zeka Destekli Tur Rehberiniz. Gezilerinizi kolaylaştırır, keşiflerinizi artırır!",
 };
 
 export default function RootLayout({ children }) {

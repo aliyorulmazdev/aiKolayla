@@ -15,19 +15,19 @@ const Chat = () => {
       const currentTokens = await fetchUserTokensById(userId);
 
       if (currentTokens < 100) {
-        toast.error('Token balance too low....');
+        toast.error('Token çok az...');
         return;
       }
 
       const response = await generateChatResponse([...messages, query]);
 
       if (!response) {
-        toast.error('Something went wrong...');
+        toast.error('Birşeyler yanlış gitti...');
         return;
       }
       setMessages((prev) => [...prev, response.message]);
       const newTokens = await subtractTokens(userId, response.tokens);
-      toast.success(`${newTokens} tokens remaining...`);
+      toast.success(`${newTokens} token kaldı...`);
     },
   });
 
@@ -59,8 +59,8 @@ const Chat = () => {
         {isPending ? <span className='loading'></span> : null}
       </div>
       <form onSubmit={handleSubmit} className='max-w-4xl pt-12'>
-        <div className='join w-full'><input type='text' placeholder='Message GeniusGPT' className='input input-bordered join-item w-full' value={text} required onChange={(e) => setText(e.target.value)}/>
-        <button className='btn btn-primary join-item' type='submit' disabled={isPending}>{isPending? 'Please wait...' : 'Ask Question'}</button>
+        <div className='join w-full'><input type='text' placeholder='AI - Asistana Sor' className='input input-bordered join-item w-full' value={text} required onChange={(e) => setText(e.target.value)}/>
+        <button className='btn btn-primary join-item' type='submit' disabled={isPending}>{isPending? 'Lütfen bekleyin...' : 'Soru Sor'}</button>
         </div>
       </form>
     </div>

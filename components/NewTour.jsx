@@ -25,20 +25,20 @@ const NewTour = () => {
       const currentTokens = await fetchUserTokensById(userId);
 
       if (currentTokens < 300) {
-        toast.error('Token balance too low....');
+        toast.error('Token krediniz çok yetersiz...');
         return;
       }
 
       const newTour = await generateTourResponse(destination);
       if (!newTour) {
-        toast.error('No matching city found...');
+        toast.error('İlgili şehir bulunamadı...');
         return null;
       }
 
       const response = await createNewTour(newTour.tour);
       queryClient.invalidateQueries({ queryKey: ['tours'] });
       const newTokens = await subtractTokens(userId, newTour.tokens);
-      toast.success(`${newTokens} tokens remaining...`);
+      toast.success(`${newTokens} token kaldı...`);
       return newTour.tour;
     },
   });
@@ -56,24 +56,24 @@ const NewTour = () => {
   return (
     <>
       <form onSubmit={handleSubmit} className='max-w-2xl'>
-        <h2 className='mb-4'>Select your dream destination</h2>
+        <h2 className='mb-4'>Hayalinizdeki turu oluşturun...</h2>
         <div className='join w-full'>
           <input
             type='text'
             className='input input-bordered join-item w-full'
-            placeholder='city'
+            placeholder='Şehir'
             name='city'
             required
           />
           <input
             type='text'
             className='input input-bordered join-item w-full'
-            placeholder='country'
+            placeholder='Ülke'
             name='country'
             required
           />
           <button className='btn btn-primary join-item' type='submit'>
-            generate tour
+            Beni şaşırt
           </button>
         </div>
       </form>

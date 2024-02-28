@@ -17,7 +17,7 @@ const ToursPage = () => {
         <div className='join w-full'>
           <input
             type='text'
-            placeholder='enter city or country here..'
+            placeholder='Buraya şehir veya ülke adı giriniz..'
             className='input input-bordered join-item w-full'
             name='search'
             value={searchValue}
@@ -30,7 +30,7 @@ const ToursPage = () => {
             disabled={isPending}
             onClick={() => setSearchValue('')}
           >
-            {isPending ? 'please wait' : 'reset'}
+            {isPending ? 'lütfen bekleyin' : 'sıfırla'}
           </button>
         </div>
       </form>

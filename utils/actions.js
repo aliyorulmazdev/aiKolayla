@@ -28,20 +28,20 @@ export const generateChatResponse = async (chatMessages) => {
 };
 
 export const generateTourResponse = async ({ city, country }) => {
-  const query = `Find a exact ${city} in this exact ${country}.
-If ${city} and ${country} exist, create a list of things families can do in this ${city},${country}. 
-Once you have a list, create a one-day tour. Response should be  in the following JSON format: 
-{
-  "tour": {
-    "city": "${city}",
-    "country": "${country}",
-    "title": "title of the tour",
-    "description": "short description of the city and tour",
-    "stops": [" stop name", "stop name","stop name"]
+  const query = `Tam olarak ${country} içinde bu ${city}'yi bulun.
+  Eğer ${city} ve ${country} varsa, ailelerin bu ${city},${country}'de yapabileceği şeylerin bir listesini oluşturun. 
+  Bir liste oluşturduktan sonra, bir günlük tur oluşturun. Yanıt aşağıdaki JSON formatında olmalıdır: 
+  {
+    "tour": {
+      "city": "${city}",
+      "country": "${country}",
+      "title": "turun başlığı",
+      "description": "şehir ve tur hakkında kısa açıklama",
+      "stops": ["durağın adı", "durağın adı", "durağın adı"]
+    }
   }
-}
-"stops" property should include only three stops.
-If you can't find info on exact ${city}, or ${city} does not exist, or it's population is less than 1, or it is not located in the following ${country},   return { "tour": null }, with no additional characters.`;
+  "stops" özelliği sadece üç durağı içermelidir.
+  Eğer tam olarak ${city} hakkında bilgi bulamazsanız, veya ${city} yoksa, veya nüfusu 1'den azsa, veya belirtilen ${country}'de bulunmuyorsa, ek karakter olmadan { "tour": null } döndürün.`;
   try {
     const response = await openai.chat.completions.create({
       messages: [
