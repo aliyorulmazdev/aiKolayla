@@ -4,6 +4,7 @@ import {
   getExistingTour,
   generateTourResponse,
   createNewTour,
+  fetchUserTokensById,
   subtractTokens,
 } from '@/utils/actions';
 import TourInfo from './TourInfo';
@@ -21,6 +22,12 @@ const NewTour = () => {
       const existingTour = await getExistingTour(destination);
       if (existingTour) return existingTour;
 
+      const currentTokens = await fetchUserTokensById(userId);
+
+      if (currentTokens < 300) {
+        toast.error('Token balance too low....');
+        return;
+      }
 
       const newTour = await generateTourResponse(destination);
       if (!newTour) {
@@ -28,9 +35,10 @@ const NewTour = () => {
         return null;
       }
 
-      
+      const response = await createNewTour(newTour.tour);
       queryClient.invalidateQueries({ queryKey: ['tours'] });
-
+      const newTokens = await subtractTokens(userId, newTour.tokens);
+      toast.success(`${newTokens} tokens remaining...`);
       return newTour.tour;
     },
   });

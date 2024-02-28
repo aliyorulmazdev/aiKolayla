@@ -1,16 +1,14 @@
 import ToursPage from '@/components/ToursPage';
-import { getAllTours } from '@/utils/actions';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-
-const AllToursPage = async () => {
+import { getAllTours } from '@/utils/actions';
+export default async function AllToursPage() {
   const queryClient = new QueryClient();
-
   await queryClient.prefetchQuery({
-    queryKey: ['tours', ''],
+    queryKey: ['tours'],
     queryFn: () => getAllTours(),
   });
   return (
@@ -18,5 +16,4 @@ const AllToursPage = async () => {
       <ToursPage />
     </HydrationBoundary>
   );
-};
-export default AllToursPage;
+}
